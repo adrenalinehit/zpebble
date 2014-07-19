@@ -5,7 +5,7 @@ var catsUri = config.webservice + '/' + config.lang + '/' + config.AllCats;
 var cats = z.getData(catsUri);
 
 var text = '';
-for (int i=0; i < cats.length; i++){
+for (var i=0; i < cats.length; i++){
 	text += cats[i];
 }
 
