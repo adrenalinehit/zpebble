@@ -15,7 +15,7 @@ function populateData(opts) {
 	ajax({
 		url: opts.address,
 		type: 'json'
-	}, opts.callback(data));
+	}, opts.callback;
 };
 
 
@@ -57,8 +57,8 @@ simply.on('singleClick', function(e) {
 });
 
 
-function popCats(d){
-	cats = d.Data;
+function popCats(data){
+	cats = data.Data;
 };
 
 populateData({
