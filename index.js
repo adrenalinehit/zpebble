@@ -7,10 +7,10 @@ ajax({url: 'http://ec2-54-76-161-40.eu-west-1.compute.amazonaws.com/zanduli2/Mob
 	var cats = data.Data;
 
 	for (var i = 0; i < cats.length; i++) {
-		text += cats[i].Name;
+		text += cats[i].Name + '\r\n';
 	}
 
 	simply.body(text);
 });
 
-simply.title('Testing....');
+simply.title('Categories:');
