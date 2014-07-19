@@ -15,7 +15,7 @@ function populateData(opts) {
 	ajax({
 		url: opts.address,
 		type: 'json'
-	}, opts.callback());
+	}, opts.callback(data));
 };
 
 
