@@ -24,13 +24,18 @@ ajax({
 var count = parseInt(localStorage.getItem('count')) || 0;
 
 simply.on('singleClick', function(e) {
-	
-simply.body('hi : ' + count);
 
 	if (e.button === 'up') {
 		--count;
 	} else if (e.button === 'down') {
 		++count;
+	}
+
+	if (count >= 0) {
+		count = 0;
+	}
+	if (count < cats.length) {
+		count = cats.length;
 	}
 	
 	simply.body(cats[count].Name);
