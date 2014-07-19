@@ -15,7 +15,7 @@ function populateData(opts) {
 	ajax({
 		url: opts.address,
 		type: 'json'
-	}, opts.callback);
+	}, opts.callback(data));
 };
 
 
@@ -27,6 +27,7 @@ function setText(opts) {
 var count = parseInt(localStorage.getItem('count')) || 0;
 
 simply.on('singleClick', function(e) {
+
 
 	if (e.button === 'up') {
 		--count;
@@ -41,7 +42,11 @@ simply.on('singleClick', function(e) {
 		count = cats.length - 1;
 	}
 
-	simply.body(cats[count].Name);
+	if (cats.length !== 0) {
+		simply.body(cats[count].Name);
+	} else {
+		simply.body('naff all loaded');
+	}
 
 	localStorage.setItem('count', count);
 
@@ -57,7 +62,7 @@ simply.on('singleClick', function(e) {
 });
 
 
-function popCats(data){
+function popCats(data) {
 	cats = data.Data;
 };
 
