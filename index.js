@@ -4,7 +4,7 @@ ajax({url: 'http://ec2-54-76-161-40.eu-west-1.compute.amazonaws.com/zanduli2/Mob
 	var cats = data.Data;
 
 	for (var i = 0; i < cats.length; i++) {
-		text += cats[i];
+		text += cats[i].Name;
 	}
 
 	simply.body(text);
