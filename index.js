@@ -1,7 +1,7 @@
 var z = require('lib/zanduli'),
     config = require('settings');
     
-var catsUri = config.webservice + '/' + config.lang + '/' + config.AllCats;
+var catsUri = config.webservice + '/' + config.lang + '/' + config.allCats;
 var cats = z.getData(catsUri);
 
 var text = '';
