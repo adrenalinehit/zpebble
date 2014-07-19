@@ -1,9 +1,3 @@
-var conf = require('settings');
-var ws = conf.webservice;
-
-var categories = ws + '/en/AllCategories';
-var listing = ws + '/en/Listing/%s';
-
 //simply.scrollable(true);
 simply.style('small');
 
@@ -47,7 +41,7 @@ simply.on('singleClick', function(e) {
 		count = cats.length-1;
 	}
 
-	setText({title: 'Category (' + count + '/' + cats.length T+ ')', body: cats[count].Name})
+	setText({title: 'Category (' + count + '/' + cats.length + ')', body: cats[count].Name})
 	
 	localStorage.setItem('count', count);
 
