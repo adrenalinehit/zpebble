@@ -1,5 +1,8 @@
 var conf = require('settings');
-var ws = conf.webservice + '/en/AllCategory';
+var ws = conf.webservice;
+
+var categories = ws + '/en/AllCategories';
+var listing = ws + '/en/Listing/%s';
 
 //simply.scrollable(true);
 simply.style('small');
@@ -8,18 +11,18 @@ var text = '';
 
 var cats = [];
 
-ajax({
-	url: ws,
-	type: 'json'
-}, function(data) {
-	cats = data.Data;
+function populateData(opts) {
+	ajax({
+		url: opts.address,
+		type: 'json'
+	}, opts.callback());
+};
 
-	// for (var i = 0; i < cats.length; i++) {
-	// 	text += cats[i].Name + '\r\n';
-	// }
 
-	// simply.body(text);
-});
+function setText(opts) {
+	simply.text(opts);
+};
+
 
 var count = parseInt(localStorage.getItem('count')) || 0;
 
@@ -35,12 +38,32 @@ simply.on('singleClick', function(e) {
 		count = 0;
 	}
 	if (count < cats.length) {
-		count = cats.length;
+		count = cats.length - 1;
 	}
-	
+
 	simply.body(cats[count].Name);
+
 	localStorage.setItem('count', count);
+
+	if (e.button === 'select') {
+
+	}
+
+	if (e.button === 'back') {
+
+
+	}
+
 });
 
 
-simply.title('Categories:');
+function popCats(d){
+	cats = d.data.Data;
+};
+
+populateData({
+	address: categories,
+	callback: popCats
+});
+
+simply.title('Categories');
