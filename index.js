@@ -35,6 +35,7 @@ function setText(opts) {
 };
 
 function homeScreen(opts) {
+	simply.scrollable(false);
 	setText({
 		title: 'Category (' + opts.count + '/' + cats.length + ')',
 		body: cats[opts.count - 1].Name
@@ -45,26 +46,33 @@ var count = parseInt(localStorage.getItem('count')) || 1;
 
 simply.on('singleClick', function(e) {
 
-
 	if (e.button === 'up') {
 		--count;
+		if (count <= 1) {
+			count = 1;
+		}
+		if (count >= cats.length) {
+			count = cats.length;
+		}
+		localStorage.setItem('count', count);
+		homeScreen({
+			count: count
+		});
+
 	} else if (e.button === 'down') {
 		++count;
+		if (count <= 1) {
+			count = 1;
+		}
+		if (count >= cats.length) {
+			count = cats.length;
+		}
+		localStorage.setItem('count', count);
+		homeScreen({
+			count: count
+		});
+
 	}
-
-	if (count <= 1) {
-		count = 1;
-	}
-	if (count >= cats.length) {
-		count = cats.length;
-	}
-
-	homeScreen({
-		count: count
-	});
-
-
-	localStorage.setItem('count', count);
 
 	if (e.button === 'select') {
 		var details = '';
@@ -77,16 +85,19 @@ simply.on('singleClick', function(e) {
 			title: cats[count - 1].Name,
 			body: details
 		});
+		simply.scrollable(true);
 	}
 
-	if (e.button === 'back') {
-		homeScreen({
-			count: count
-		});
-
-	}
 
 });
+
+
+simply.on('back', function(e) {
+	homeScreen({
+		count: count
+	});
+
+})
 
 populateData({
 	address: 'http://ec2-54-76-161-40.eu-west-1.compute.amazonaws.com/zanduli2/MobileService.svc/V2/en/AllCategory',
