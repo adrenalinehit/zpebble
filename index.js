@@ -1,13 +1,15 @@
-var z = require('lib/zanduli'),
-    config = require('settings');
-    
-var catsUri = config.webservice + '/' + config.lang + '/' + config.allCats;
-var cats = z.getData(catsUri);
 
-var text = '';
-for (var i=0; i < cats.length; i++){
-	text += cats[i];
-}
 
-simply.body(text);
+ajax({
+	url: 'http://ec2-54-76-161-40.eu-west-1.compute.amazonaws.com/zanduli2/MobileService.svc/V2/en/AllCategory'
+}, function(data) {
+	var cats = data.Data;
+
+	for (var i = 0; i < cats.length; i++) {
+		text += cats[i];
+	}
+		
+	simply.body(text);
+
+});
 
