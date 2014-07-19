@@ -25,7 +25,7 @@ function populateData(opts) {
 
 
 function setText(opts) {
-	simply.text(opts);
+	simply.text(opts, true);
 };
 
 
@@ -40,19 +40,15 @@ simply.on('singleClick', function(e) {
 		++count;
 	}
 
-	if (count >= 0) {
+	if (count < 0) {
 		count = 0;
 	}
-	if (count < cats.length) {
-		count = cats.length - 1;
+	if (count > cats.length) {
+		count = cats.length-1;
 	}
 
-	if (cats.length !== 0) {
-		simply.body(cats[count].Name);
-	} else {
-		simply.body('naff all loaded');
-	}
-
+	setText({title: 'Category (' + count + '/' + cats.length T+ ')', body: cats[count].Name})
+	
 	localStorage.setItem('count', count);
 
 	if (e.button === 'select') {
@@ -60,7 +56,6 @@ simply.on('singleClick', function(e) {
 	}
 
 	if (e.button === 'back') {
-
 
 	}
 
@@ -71,4 +66,4 @@ populateData({
 	callback: popCats
 });
 
-simply.title('Categories');
+simply.title('Zanduli');
