@@ -58,7 +58,7 @@ simply.on('singleClick', function(e) {
 
 
 function popCats(d){
-	cats = d.data.Data;
+	cats = d.Data;
 };
 
 populateData({
