@@ -11,11 +11,16 @@ var text = '';
 
 var cats = [];
 
+var popCats = function(data, st, req) {
+	cats = data.Data;
+};
+
+
 function populateData(opts) {
 	ajax({
 		url: opts.address,
 		type: 'json'
-	}, opts.callback(data));
+	}, opts.callback);
 };
 
 
@@ -60,11 +65,6 @@ simply.on('singleClick', function(e) {
 	}
 
 });
-
-
-function popCats(data) {
-	cats = data.Data;
-};
 
 populateData({
 	address: categories,
