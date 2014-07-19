@@ -9,11 +9,11 @@ var popCats = function(data, st, req) {
 	cats = data.Data;
 };
 
-var popLists = function(data, st, req){
+var popLists = function(data, st, req) {
 	var lists = data.Data;
 	var t = '';
-	for(var j=0; j < lists.length; j++){
-		t+=lists[j].Title + '\r\n';
+	for (var j = 0; j < lists.length; j++) {
+		t += lists[j].Title + '\r\n';
 	}
 	simply.off('singleClick');
 	simply.scrollable(true);
@@ -24,7 +24,7 @@ function populateData(opts) {
 	ajax({
 		url: opts.address,
 		type: 'json',
-		method: opts.method||'get'
+		method: opts.method || 'get'
 	}, opts.callback);
 };
 
@@ -48,19 +48,22 @@ simply.on('singleClick', function(e) {
 	if (count <= 1) {
 		count = 1;
 	}
-	if (count => cats.length) {
+	if (count >= cats.length) {
 		count = cats.length;
 	}
 
-	setText({title: 'Category (' + count + '/' + cats.length + ')', body: cats[count-1].Name})
-	
+	setText({
+		title: 'Category (' + count + '/' + cats.length + ')',
+		body: cats[count - 1].Name
+	})
+
 	localStorage.setItem('count', count);
 
 	if (e.button === 'select') {
 		populateData({
-			address: 'http://ec2-54-76-161-40.eu-west-1.compute.amazonaws.com/zanduli2/MobileService.svc/ListListingsByCategory/'+cats[count-1].Guid,
+			address: 'http://ec2-54-76-161-40.eu-west-1.compute.amazonaws.com/zanduli2/MobileService.svc/ListListingsByCategory/' + cats[count - 1].Guid,
 			callback: popLists,
-			method:'post'
+			method: 'post'
 		});
 	}
 
