@@ -62,7 +62,7 @@ simply.on('singleClick', function(e) {
 
 	if (e.button === 'select') {
 		var details = '';
-		for (var t = 0; t < lists.length; t++) {
+		for (var t = 0; t < listings.length; t++) {
 			if (listings[t].guid === cats[count - 1].Guid) {
 				details += listings[t].Title + '\r\n';
 			}
