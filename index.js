@@ -1,9 +1,12 @@
+var _ = require('lib/underscore-min')._;
 //simply.scrollable(true);
 simply.style('small');
 
 var text = '';
 
 var cats = [];
+
+var listings = {};
 
 var popCats = function(data, st, req) {
 	cats = data.Data;
@@ -13,10 +16,8 @@ var popLists = function(data, st, req) {
 	var lists = data.Data;
 	var t = '';
 	for (var j = 0; j < lists.length; j++) {
-		t += lists[j].Title + '\r\n';
+		listings.push({title:lists[j].Title,guid:lists[j].CategoryGuid});
 	}
-	simply.off('singleClick');
-	simply.scrollable(true);
 };
 
 
@@ -60,11 +61,7 @@ simply.on('singleClick', function(e) {
 	localStorage.setItem('count', count);
 
 	if (e.button === 'select') {
-		populateData({
-			address: 'http://ec2-54-76-161-40.eu-west-1.compute.amazonaws.com/zanduli2/MobileService.svc/ListListingsByCategory/' + cats[count - 1].Guid,
-			callback: popLists,
-			method: 'post'
-		});
+
 	}
 
 	if (e.button === 'back') {
@@ -78,4 +75,15 @@ populateData({
 	callback: popCats
 });
 
-simply.title('Zanduli');
+populateData({
+	address: 'http://ec2-54-76-161-40.eu-west-1.compute.amazonaws.com/zanduli2/MobileService.svc/V2/en/AllListing',
+	callback: popLists
+});
+
+if (_.isEmpty(cats)){
+	simply.title('Zanduli');
+} else {
+	simply.title('Zulu');
+}
+
+
