@@ -1,7 +1,7 @@
 var conf = require('settings');
 var ws = conf.webservice + '/en/AllCategory';
 
-simply.scrollable(true);
+//simply.scrollable(true);
 simply.style('small');
 
 var text = '';
