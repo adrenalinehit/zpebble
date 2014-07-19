@@ -5,7 +5,7 @@ var text = '';
 
 var cats = [];
 
-var listings = {};
+var listings = [];
 
 var popCats = function(data, st, req) {
 	cats = data.Data;
@@ -13,7 +13,6 @@ var popCats = function(data, st, req) {
 
 var popLists = function(data, st, req) {
 	var lists = data.Data;
-	var t = '';
 	for (var j = 0; j < lists.length; j++) {
 		listings.push({
 			title: lists[j].Title,
@@ -26,8 +25,7 @@ var popLists = function(data, st, req) {
 function populateData(opts) {
 	ajax({
 		url: opts.address,
-		type: 'json',
-		method: opts.method || 'get'
+		type: 'json'
 	}, opts.callback);
 };
 
@@ -63,15 +61,15 @@ simply.on('singleClick', function(e) {
 	localStorage.setItem('count', count);
 
 	if (e.button === 'select') {
-		var text = '';
+		var details = '';
 		for (var t = 0; t < lists.length; t++) {
 			if (listings[t].CategoryGuid === cats[count - 1].Guid) {
-				text += listings[t].Title + '\r\n';
+				details += listings[t].Title + '\r\n';
 			}
 		}
 		setText({
 			title: cats[count - 1].Name,
-			body: text
+			body: details
 		});
 	}
 
