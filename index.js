@@ -8,7 +8,6 @@ var text = '';
 
 var cats = [];
 
-
 ajax({
 	url: ws,
 	type: 'json'
@@ -25,15 +24,16 @@ ajax({
 var count = parseInt(localStorage.getItem('count')) || 0;
 
 simply.on('singleClick', function(e) {
+	
+simply.body('hi : ' + count);
+
 	if (e.button === 'up') {
-
 		--count;
-
 	} else if (e.button === 'down') {
 		++count;
 	}
+	
 	simply.body(cats[count].Name);
-
 	localStorage.setItem('count', count);
 });
 
