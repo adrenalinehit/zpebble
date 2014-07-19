@@ -64,7 +64,7 @@ simply.on('singleClick', function(e) {
 		var details = '';
 		for (var t = 0; t < listings.length; t++) {
 			if (listings[t].guid === cats[count - 1].Guid) {
-				details += listings[t].Title + '\r\n';
+				details += listings[t].title + '\r\n';
 			}
 		}
 		setText({
