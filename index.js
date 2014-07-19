@@ -1,4 +1,4 @@
-var _ = require('lib/underscore-min')._;
+var _ = require('lib/underscore-min');
 //simply.scrollable(true);
 simply.style('small');
 
