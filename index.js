@@ -34,6 +34,12 @@ function setText(opts) {
 	simply.text(opts, true);
 };
 
+function homeScreen(opts) {
+	setText({
+		title: 'Category (' + opts.count + '/' + cats.length + ')',
+		body: cats[opts.count - 1].Name
+	})
+};
 
 var count = parseInt(localStorage.getItem('count')) || 1;
 
@@ -53,10 +59,10 @@ simply.on('singleClick', function(e) {
 		count = cats.length;
 	}
 
-	setText({
-		title: 'Category (' + count + '/' + cats.length + ')',
-		body: cats[count - 1].Name
-	})
+	homeScreen({
+		count: count
+	});
+
 
 	localStorage.setItem('count', count);
 
@@ -74,6 +80,9 @@ simply.on('singleClick', function(e) {
 	}
 
 	if (e.button === 'back') {
+		homeScreen({
+			count: count
+		});
 
 	}
 
